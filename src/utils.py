@@ -6,7 +6,7 @@ def load_data():
     """
     Загружает данные из файла
     """
-    with open("src/operations.json", 'r', encoding='utf-8') as file:
+    with open("operations.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
     return data
 
@@ -45,7 +45,7 @@ def from_check_operation(item):
     if 'from' not in item.keys():
         return ''
     else:
-        from_check_card = item['from'][:-16]
+        from_check_card = item['from'][:-17]
         from_check_numbers = item['from'][-16:]
         from_check_for_print = f'{from_check_card} {from_check_numbers[0:4]} {from_check_numbers[4:6]}** **** {from_check_numbers[-4:]}'
         return f'{from_check_for_print} -> '
@@ -53,14 +53,11 @@ def from_check_operation(item):
 
 def to_check_operation(item):
     """
-        Преобразует номер счет получения
-        :param item: исходные данные
-        :return: вывод счета в правильном формате
-        """
-    if 'to' not in item.keys():
-        return ''
-    else:
-        to_check_card = item['to'][:-20]
-        to_check_numbers = item['to'][-20:]
-        to_check_for_print = f'{to_check_card} **{to_check_numbers[-4:]}'
-        return to_check_for_print
+    Преобразует номер счет получения
+    :param item: исходные данные
+    :return: вывод счета в правильном формате
+    """
+    to_check_card = item['to'][:-21]
+    to_check_numbers = item['to'][-20:]
+    to_check_for_print = f'{to_check_card} **{to_check_numbers[-4:]}'
+    return to_check_for_print
